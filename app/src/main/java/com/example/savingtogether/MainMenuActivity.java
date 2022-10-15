@@ -9,40 +9,42 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainMenuActivity extends AppCompatActivity {
-    Button introBtn, howToUseBtn;
+    Button topicsBtn, forumBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        introBtn =findViewById(R.id.learningTopicsButton);
-        howToUseBtn = findViewById(R.id.forumButton);
+        topicsBtn =findViewById(R.id.learningTopicsButton);
+        forumBtn = findViewById(R.id.forumButton);
         ImageView artView = findViewById(R.id.artView);
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
-        introBtn.setOnClickListener(view -> {
+
+        // Open Topics Menu
+        topicsBtn.setOnClickListener(view -> {
             clickSound.start();
-            openIntro();
+            openTopics();
         });
 
-//        howToUseBtn.setOnClickListener(view -> {
-//            clickSound.start();
-//            openTutorial();
-//        });
+        forumBtn.setOnClickListener(view -> {
+            clickSound.start();
+            openForum();
+        });
 
         artView.animate().rotation(1450).alpha(1).setDuration(2000);
 
     }
 
-    // Open screen for intro page
-    private void openIntro() {
+    // Open screen for topics page
+    private void openTopics() {
         Intent intent = new Intent(this, TopicsActivity.class);
         startActivity(intent);
     }
 
-//    // Open screen for how to use tutorial
-//    private void openTutorial() {
-//        Intent intent = new Intent(this, Tutorial.class);
-//        startActivity(intent);
-//    }
+    // Open screen for community forum page
+    private void openForum() {
+        Intent intent = new Intent(this, ForumActivity.class);
+        startActivity(intent);
+    }
 
 }

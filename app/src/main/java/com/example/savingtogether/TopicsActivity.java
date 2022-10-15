@@ -21,37 +21,26 @@ public class TopicsActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> topics = new ArrayList<>();
     Button menuButton;
-//    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Store in persistent storage
-//        sharedPreferences = getApplicationContext().getSharedPreferences("com.example.savingtogether", Context.MODE_PRIVATE);
-//        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("topics", null);
-//        if (set == null) {
-//
-//        } else {
-//            topics = new ArrayList(set);
-//        }
-
         // Example topics for the app
-        topics.add("How to save money");
-        topics.add("How to cook at home");
-        topics.add("How to eat healthy");
-        topics.add("Finance tips for beginners");
+        topics.add("How To Save Money");
+        topics.add("How To Cook At Home");
+        topics.add("How To Eat Healthy");
+        topics.add("Finance Tips For Beginners");
         topics.add("Inflation advice");
-        topics.add("Cheap groceries");
-        topics.add("Learning investing");
-        topics.add("ETFs 101");
+        topics.add("Cheap Groceries");
+        topics.add("Learning Investing");
+        topics.add("ETFs Basics");
         topics.add("CPF Overview");
-        topics.add("Best credit cards");
-        topics.add("Take public transport");
-        topics.add("How Medisave will help you");
-        topics.add("How to BTO");
-        topics.add("Ride sharing recommendations");
+        topics.add("Best Credit Cards");
+        topics.add("Take Public Transport");
+        topics.add("How Medisave Helps Finances");
+        topics.add("How To BTO");
         topics.add("Singapore Savings Bonds");
-        topics.add("Career advice");
-        topics.add("University subsidies");
+        topics.add("Career Advice");
+        topics.add("Side Hustles");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_topics);
@@ -94,24 +83,4 @@ public class TopicsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // Menu add topic
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.add_topic, menu);
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        super.onOptionsItemSelected(item);
-//        if (item.getItemId() == R.id.add_topic) {
-//            Intent intent = new Intent(getApplicationContext(), UploadActivity.class);
-//            startActivity(intent);
-//            return true;
-//        }
-//        return false;
-//    }
 }
