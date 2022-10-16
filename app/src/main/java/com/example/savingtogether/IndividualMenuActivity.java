@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class IndividualMenuActivity extends AppCompatActivity {
@@ -79,6 +80,9 @@ public class IndividualMenuActivity extends AppCompatActivity {
                 }while (c.moveToNext());
             }
         }
+
+        Collections.reverse(comments);
+        Collections.reverse(usernames);
 
         // Truncate comments to be displayed before expanding by clicking
         truncatedComments = (ArrayList) comments.clone();

@@ -20,7 +20,7 @@ public class TopicsActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     ListView listView;
     ArrayList<String> topics = new ArrayList<>();
-    Button menuButton;
+    Button menuButton, topicsForumButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class TopicsActivity extends AppCompatActivity {
         // Ids for components
         listView = findViewById(R.id.listViewSearch);
         menuButton = findViewById(R.id.menuButton);
+        topicsForumButton = findViewById(R.id.topicsForumButton);
 
         // Sort topics alphabetically
         Collections.sort(topics);
@@ -57,7 +58,7 @@ public class TopicsActivity extends AppCompatActivity {
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
 
 
-        // Dynmically switch to selected topic
+        // Dynamically switch to selected topic
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -75,11 +76,23 @@ public class TopicsActivity extends AppCompatActivity {
             openMenu();
         });
 
+        // Go to forum button
+        topicsForumButton.setOnClickListener(view -> {
+            clickSound.start();
+            openForum();
+        });
+
     }
 
     // Open screen for intro page
     private void openMenu() {
         Intent intent = new Intent(this, MainMenuActivity.class);
+        startActivity(intent);
+    }
+
+    // Open screen for forum page
+    private void openForum() {
+        Intent intent = new Intent(this, ForumActivity.class);
         startActivity(intent);
     }
 

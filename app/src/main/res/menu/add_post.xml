@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/add_topic"
-        android:title="Add new topic"></item>
+        android:id="@+id/add_post"
+        android:title="Add new post"></item>
 </menu>

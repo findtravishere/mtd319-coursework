@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "4531156645",
+    "project_id": "savingtogether-1d180",
+    "storage_bucket": "savingtogether-1d180.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4531156645:android:11d5bcffbf137a4fefff4c",
+        "android_client_info": {
+          "package_name": "com.example.savingtogether"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4531156645-b89qvqqtbe201m76acpu7q4k59mmqo1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa9rjueHuiIbgsTpy2DnqL69MrGUI1JMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4531156645-b89qvqqtbe201m76acpu7q4k59mmqo1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

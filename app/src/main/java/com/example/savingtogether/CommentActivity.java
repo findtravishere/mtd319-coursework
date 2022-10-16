@@ -1,5 +1,7 @@
 package com.example.savingtogether;
 
+import static com.example.savingtogether.IndividualMenuActivity.usernames;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -28,7 +30,6 @@ public class CommentActivity extends AppCompatActivity {
         // Sound setup
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
 
-
         // Edit username and comment handling
         EditText commentField = findViewById(R.id.editComment);
         EditText usernameField = findViewById(R.id.commentName);
@@ -41,7 +42,7 @@ public class CommentActivity extends AppCompatActivity {
         // Show popup expansion of comment if clicked (disable and hide everything)
         if (commentId != -1) {
             commentField.setText(IndividualMenuActivity.comments.get(commentId));
-            usernameField.setText(IndividualMenuActivity.usernames.get(commentId) + "'s comment");
+            usernameField.setText(usernames.get(commentId) + "'s comment");
 
             // disable editting and submit button
             commentField.setEnabled(false);
@@ -78,6 +79,11 @@ public class CommentActivity extends AppCompatActivity {
                 return;
             }
 
+            if (usernames.contains(usernameToSubmit)) {
+                Toast.makeText(this, "Username already exists", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             if (commentToSubmit.length() == 0) {
                 Toast.makeText(this, "Comment should not be blank", Toast.LENGTH_LONG).show();
                 return;
@@ -95,7 +101,7 @@ public class CommentActivity extends AppCompatActivity {
 
 
 
-// ARCHIVED
+// ARCHIVED for editing existing comments
 // Handle submit comment button
 //        submitButton.setOnClickListener(view -> {
 //            clickSound.start();
