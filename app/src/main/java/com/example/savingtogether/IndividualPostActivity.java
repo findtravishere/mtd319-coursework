@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class IndividualPostActivity extends AppCompatActivity {
         String post = intent.getStringExtra("ForumPost");
         individualPostTitle.setText(title);
         individualPost.setText(post);
+        MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
 
         // Read image from firebase
         readPhoto = findViewById(R.id.readPhoto);
@@ -76,6 +78,7 @@ public class IndividualPostActivity extends AppCompatActivity {
         // Back to all posts
         backIndividualPostButton = findViewById(R.id.backIndividualPostButton);
         backIndividualPostButton.setOnClickListener(view -> {
+            clickSound.start();
             onBackPressed();
         });
 

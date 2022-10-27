@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
         android:fontFamily="monospace"
-        android:text="Tutorial Menu"
+        android:text="Menu"
         android:textAlignment="center"
         android:textColor="#E91E63"
         android:textSize="34sp"

@@ -19,7 +19,7 @@ import java.util.HashSet;
 public class CommentActivity extends AppCompatActivity {
 
     int commentId;
-    Button submitButton, backCommentButton;
+    Button submitButton, backCommentButton, commentBackButton;
 
 
     @Override
@@ -29,6 +29,8 @@ public class CommentActivity extends AppCompatActivity {
 
         // Sound setup
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
+        MediaPlayer errorSound = MediaPlayer.create(this, R.raw.invalid);
+        MediaPlayer submitSound = MediaPlayer.create(this, R.raw.submit);
 
         // Edit username and comment handling
         EditText commentField = findViewById(R.id.editComment);
@@ -38,6 +40,8 @@ public class CommentActivity extends AppCompatActivity {
         String title = intent.getStringExtra("TopicName");
         submitButton = findViewById(R.id.submitCommentButton);
         backCommentButton = findViewById(R.id.backCommentButton);
+        commentBackButton = findViewById(R.id.commentBackButton);
+
 
         // Show popup expansion of comment if clicked (disable and hide everything)
         if (commentId != -1) {
@@ -49,6 +53,9 @@ public class CommentActivity extends AppCompatActivity {
 
             submitButton.setAlpha(0);
             submitButton.setEnabled(false);
+
+            commentBackButton.setAlpha(0);
+            commentBackButton.setEnabled(false);
 
             backCommentButton.setAlpha(1);
             backCommentButton.setOnClickListener(view -> {
@@ -72,25 +79,35 @@ public class CommentActivity extends AppCompatActivity {
 
             // Error handling for blank submission and username max limit
             if (usernameToSubmit.length() == 0) {
+
                 Toast.makeText(this, "Username should not be blank", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             } else if (usernameToSubmit.length() > 20) {
                 Toast.makeText(this, "Username length should be less than 20", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             }
 
             if (usernames.contains(usernameToSubmit)) {
                 Toast.makeText(this, "Username already exists", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             }
 
             if (commentToSubmit.length() == 0) {
                 Toast.makeText(this, "Comment should not be blank", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             }
 
             submitButton.setEnabled(true);
             myDatabase.execSQL("INSERT INTO " + getTitleSQL + " (comment, username) VALUES " + "('" + commentToSubmit + "'" + ", " + "'" + usernameToSubmit + "')");
+            submitSound.start();
+            onBackPressed();
+        });
+
+        commentBackButton.setOnClickListener(view -> {
             clickSound.start();
             onBackPressed();
         });

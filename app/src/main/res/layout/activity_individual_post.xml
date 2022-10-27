@@ -40,11 +40,14 @@
 
     <TextView
         android:id="@+id/individualPostTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:background="#8BC34A"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
         android:text="TextView"
+        android:textAlignment="center"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/individualPost"
         app:layout_constraintEnd_toEndOf="parent"

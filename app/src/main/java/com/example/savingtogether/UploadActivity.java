@@ -38,7 +38,7 @@ public class UploadActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 101;
     EditText postTitle, editPost;
-    Button submitForumButton, cameraButton, galleryButton;
+    Button submitForumButton, cameraButton, galleryButton, uploadBackButton;
     ImageView imageView;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ActivityResultLauncher<String> uploadPhoto;
@@ -53,6 +53,9 @@ public class UploadActivity extends AppCompatActivity {
 
         // Sound setup
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
+        MediaPlayer errorSound = MediaPlayer.create(this, R.raw.invalid);
+        MediaPlayer submitSound = MediaPlayer.create(this, R.raw.submit);
+
         postTitle = findViewById(R.id.forumPostTitle);
         editPost = findViewById(R.id.forumPost);
 
@@ -129,20 +132,23 @@ public class UploadActivity extends AppCompatActivity {
             // Error handling for blank submission and title max limit
             if (titleToSubmit.length() == 0) {
                 Toast.makeText(this, "Title should not be blank", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             } else if (titleToSubmit.length() > 30) {
                 Toast.makeText(this, "Title length should be less than 30", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             }
 
             if (postToSubmit.length() == 0) {
                 Toast.makeText(this, "Post should not be blank", Toast.LENGTH_LONG).show();
+                errorSound.start();
                 return;
             }
 
             // Error handling for empty photo
             if (imageView.getTag() == "0") {
-                System.out.println("HAHAHAHAHAHAHAHAH");
+                errorSound.start();
                 Toast.makeText(this, "Please upload a photo", Toast.LENGTH_LONG).show();
                 return;
             }
@@ -157,9 +163,16 @@ public class UploadActivity extends AppCompatActivity {
             uploadPicture();
 
             // end
+            submitSound.start();
+            onBackPressed();
+        });
+
+        uploadBackButton = findViewById(R.id.uploadBackButton);
+        uploadBackButton.setOnClickListener(view -> {
             clickSound.start();
             onBackPressed();
         });
+
     }
 
 
