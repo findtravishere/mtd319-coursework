@@ -131,6 +131,7 @@ public class UploadActivity extends AppCompatActivity {
             String titleToSubmit = postTitle.getText().toString();
             titleToSubmit = titleToSubmit.trim();
             String postToSubmit = editPost.getText().toString();
+            postToSubmit = postToSubmit.trim();
 
 
             // Error handling for blank submission and title max limit
@@ -148,7 +149,7 @@ public class UploadActivity extends AppCompatActivity {
                 return;
             }
 
-            if (postToSubmit.length() == 0) {
+            if (postToSubmit.length() == 0 || postToSubmit == "") {
                 Toast.makeText(this, "Post should not be blank", Toast.LENGTH_LONG).show();
                 errorSound.start();
                 return;

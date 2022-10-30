@@ -75,10 +75,12 @@ public class CommentActivity extends AppCompatActivity {
             String getTitleSQL = title.replaceAll("\\s+","").toLowerCase(); // lowercase and trim whitespace to match path
             SQLiteDatabase myDatabase = this.openOrCreateDatabase(getTitleSQL, MODE_PRIVATE, null );
             String commentToSubmit = commentField.getText().toString();
+            commentToSubmit = commentToSubmit.trim();
             String usernameToSubmit = usernameField.getText().toString();
+            usernameToSubmit = usernameToSubmit.trim();
 
             // Error handling for blank submission and username max limit
-            if (usernameToSubmit.length() == 0) {
+            if (usernameToSubmit.length() == 0 || usernameToSubmit == "") {
 
                 Toast.makeText(this, "Username should not be blank", Toast.LENGTH_LONG).show();
                 errorSound.start();
@@ -95,7 +97,7 @@ public class CommentActivity extends AppCompatActivity {
                 return;
             }
 
-            if (commentToSubmit.length() == 0) {
+            if (commentToSubmit.length() == 0 || commentToSubmit == "") {
                 Toast.makeText(this, "Comment should not be blank", Toast.LENGTH_LONG).show();
                 errorSound.start();
                 return;
