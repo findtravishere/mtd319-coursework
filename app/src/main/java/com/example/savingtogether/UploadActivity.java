@@ -53,7 +53,6 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         titles.replaceAll(String::toLowerCase);
-
         // Sound setup
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
         MediaPlayer errorSound = MediaPlayer.create(this, R.raw.invalid);
@@ -130,11 +129,12 @@ public class UploadActivity extends AppCompatActivity {
         submitForumButton.setOnClickListener(view -> {
             SQLiteDatabase forumDatabase = this.openOrCreateDatabase("Forum", MODE_PRIVATE, null );
             String titleToSubmit = postTitle.getText().toString();
+            titleToSubmit = titleToSubmit.trim();
             String postToSubmit = editPost.getText().toString();
 
 
             // Error handling for blank submission and title max limit
-            if (titleToSubmit.length() == 0) {
+            if (titleToSubmit.length() == 0 || titleToSubmit == "") {
                 Toast.makeText(this, "Title should not be blank", Toast.LENGTH_LONG).show();
                 errorSound.start();
                 return;
