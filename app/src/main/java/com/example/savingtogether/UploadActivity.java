@@ -1,5 +1,7 @@
 package com.example.savingtogether;
 
+import static com.example.savingtogether.ForumActivity.titles;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -50,6 +52,7 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+        titles.replaceAll(String::toLowerCase);
 
         // Sound setup
         MediaPlayer clickSound = MediaPlayer.create(this, R.raw.click);
@@ -129,6 +132,7 @@ public class UploadActivity extends AppCompatActivity {
             String titleToSubmit = postTitle.getText().toString();
             String postToSubmit = editPost.getText().toString();
 
+
             // Error handling for blank submission and title max limit
             if (titleToSubmit.length() == 0) {
                 Toast.makeText(this, "Title should not be blank", Toast.LENGTH_LONG).show();
@@ -136,6 +140,10 @@ public class UploadActivity extends AppCompatActivity {
                 return;
             } else if (titleToSubmit.length() > 30) {
                 Toast.makeText(this, "Title length should be less than 30", Toast.LENGTH_LONG).show();
+                errorSound.start();
+                return;
+            } else if (titles.contains(titleToSubmit.toLowerCase())) {
+                Toast.makeText(this, "Title is a duplicate", Toast.LENGTH_LONG).show();
                 errorSound.start();
                 return;
             }
